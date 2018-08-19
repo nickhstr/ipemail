@@ -16,7 +16,7 @@ By default, `ipemail` will look for a `.env` file in the same directory as where
 
 Example:
 ```sh
-$ ENV_FILE=/home/me/ipemail/ip_file.txt ipemail
+$ ENV_FILE=/home/me/ipemail/.env ipemail
 ```
 
 And here's an example `.env` file:
