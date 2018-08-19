@@ -110,11 +110,12 @@ func setNewIPAddress(ipAddress []byte) error {
 
 func sendEmail(message []byte) error {
 	fromAddress := os.Getenv("EMAIL_FROM_ADDRESS")
+	fromUser := os.Getenv("EMAIL_FROM_USER")
 	fromPassword := os.Getenv("EMAIL_FROM_PASSWORD")
 	toAddress := os.Getenv("EMAIL_TO_ADDRESS")
 
 	e := email.NewEmail()
-	e.From = fmt.Sprintf("Nick Hester <%s>", fromAddress)
+	e.From = fmt.Sprintf("%s <%s>", fromUser, fromAddress)
 	e.To = []string{toAddress}
 	e.Subject = "New IP Address for Raspberry Pi"
 	e.Text = message
