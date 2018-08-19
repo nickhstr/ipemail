@@ -10,9 +10,8 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/jordan-wright/email"
-
 	"github.com/joho/godotenv"
+	"github.com/jordan-wright/email"
 )
 
 var lastIPDir string
