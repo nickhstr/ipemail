@@ -12,14 +12,27 @@ import (
 
 	"github.com/jordan-wright/email"
 
-	_ "github.com/joho/godotenv/autoload"
+	"github.com/joho/godotenv"
 )
 
-var lastIPDir = os.Getenv("LAST_IP_DIR")
-var lastIPFile = os.Getenv("LAST_IP_FILE")
-var pathToIPFile = filepath.Join(lastIPDir, lastIPFile)
+var lastIPDir string
+var lastIPFile string
+var pathToIPFile string
 
 func main() {
+	envFile := os.Getenv("ENV_FILE")
+	if envFile == "" {
+		envFile = ".env"
+	}
+
+	if err := godotenv.Load(envFile); err != nil {
+		fmt.Println("Failed to load environment variables")
+	}
+
+	lastIPDir = os.Getenv("LAST_IP_DIR")
+	lastIPFile = os.Getenv("LAST_IP_FILE")
+	pathToIPFile = filepath.Join(lastIPDir, lastIPFile)
+
 	ipAddress, err := getIPAddress()
 	if err != nil {
 		fmt.Println(err)
