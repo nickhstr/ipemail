@@ -26,6 +26,7 @@ func main() {
 
 	if err := godotenv.Load(envFile); err != nil {
 		fmt.Println("Failed to load environment variables")
+		return
 	}
 
 	lastIPDir = os.Getenv("LAST_IP_DIR")
@@ -35,6 +36,7 @@ func main() {
 	ipAddress, err := getIPAddress()
 	if err != nil {
 		fmt.Println(err)
+		return
 	}
 
 	fmt.Printf("Current IP Address: %s\n", ipAddress)
@@ -49,12 +51,14 @@ func main() {
 
 	if err = setNewIPAddress(ipAddress); err != nil {
 		fmt.Println(err)
+		return
 	}
 
 	emailMessage := fmt.Sprintf("Updated address: %s", ipAddress)
 
 	if err = sendEmail([]byte(emailMessage)); err != nil {
 		fmt.Println(err)
+		return
 	}
 }
 
